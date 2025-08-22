@@ -333,7 +333,7 @@ def create_vue3_interface():
         
         # Perform analysis
         _, sentiments, _ = chunk_processor.optimized_chunker(
-            audio_path, topic=False, request=request
+            audio_path, business_type=state.business_type, topic=False, request=request
         )
         sentiments_a = [s[2] for s in sentiments if s[2]]
         return sentiment_analyzer.sentiment_appel_agent(sentiments_a)

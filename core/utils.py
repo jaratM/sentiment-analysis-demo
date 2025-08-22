@@ -135,7 +135,7 @@ def append_rows_to_csv(rows: List[Dict], request: Optional[gr.Request] = None):
         logger.error(f"Error appending to CSV: {e}")
 
 
-def analyze_topic(transcription: str) -> str:
+def analyze_topic(transcription: str, business_type: str) -> str:
     """
     Analyze the topic of the transcription
     
@@ -146,9 +146,9 @@ def analyze_topic(transcription: str) -> str:
         Topic classification result
     """
     try:
-        from utils.topics_inf_clean import infer
-        # _, cat, typ = infer(transcription)
-        _, cat, typ = "Appel blanc", "Appel blanc", "Appel blanc"
+        from utils.topics_inf_clean import TopicClassifier  
+        topic_classifier = TopicClassifier(business_type)
+        _, cat, typ = topic_classifier.infer(transcription)
         topic = f"{cat} - {typ}"
         logger.info(f"Topic analysis result: {topic}")
         return topic
