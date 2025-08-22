@@ -148,7 +148,8 @@ def analyze_topic(transcription: str, business_type: str) -> str:
     try:
         from utils.topics_inf_clean import TopicClassifier  
         topic_classifier = TopicClassifier(business_type)
-        _, cat, typ = topic_classifier.infer(transcription)
+        # _, cat, typ = topic_classifier.infer(transcription) # TODO: Uncomment this when the model is ready
+        _, cat, typ = "Appel blanc", "Appel blanc", "Appel blanc"
         topic = f"{cat} - {typ}"
         logger.info(f"Topic analysis result: {topic}")
         return topic
